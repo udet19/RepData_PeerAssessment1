@@ -4,11 +4,29 @@ output:
   html_document:
     keep_md: true
 ---
- Let's start
+
 
 ## Loading and preprocessing the data
 
+First we have to read the data from ZIP and take a short look at the data:
+```{r readdata, echo=TRUE}
+rawdata <- read.csv(unz("activity.zip", "activity.csv") , header = TRUE)
+str(rawdata)
+```
 
+Now again from the other perspective:
+
+```{r headrawdata}
+head(rawdata, 10)
+```
+
+The dataset contains missing values. Now we will count them:
+
+```{r missingvalues, echo=TRUE}
+missingValues <- nrow(rawdata[is.na(rawdata),])
+```
+
+There are `r missingValues` missing values.
 
 ## What is mean total number of steps taken per day?
 
